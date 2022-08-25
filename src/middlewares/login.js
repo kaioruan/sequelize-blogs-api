@@ -10,10 +10,6 @@ const createValidation = (req, res, next) => {
   if (!password) {
     return res.status(400).json({ message: 'Some required fields are missing' });
   }
-
-  // if (password.length === 0) { 
-  //   return res.status(400).json({ message: 'Invalid fields' });
-  // }
   next();
 };
 
