@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     name: DataTypes.STRING,
-    email: DataTypes.STRING,
   }, {
     updatedAt: false,
     timestamps: false,

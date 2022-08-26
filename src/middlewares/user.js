@@ -12,7 +12,7 @@ const userValidation = (req, res, next) => {
   next();
 };
 
-const nameValidation = (req, res, next) => {
+const displayNameValidation = (req, res, next) => {
   const { displayName } = req.body;
   if (!displayName || displayName.length < 8) {
     return res.status(400).json(
@@ -21,5 +21,14 @@ const nameValidation = (req, res, next) => {
   }
   next();
 };
+const nameValidation = (req, res, next) => {
+  const { name } = req.body;
+  if (!name) {
+    return res.status(400).json(
+      { message: '"name" is required' },
+      );
+  }
+  next();
+};
 
-module.exports = { userValidation, nameValidation };
+module.exports = { userValidation, displayNameValidation, nameValidation };
