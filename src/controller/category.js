@@ -12,7 +12,16 @@ const categoryController = {
       console.log(error);
       return res.status(500).json({ message: ERROR_500 });
     }
-},
+  },
+  getAll: async (req, res) => {
+    try {
+      const categories = await categoryService.getAll();
+      res.status(200).json(categories);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: ERROR_500 });
+    }
+  },
 };
 
 module.exports = {

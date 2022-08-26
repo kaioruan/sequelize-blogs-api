@@ -19,5 +19,6 @@ app.post('/user', userValidation, displayNameValidation, user.userController.get
 app.get('/user', tokenValidation, user.userController.tokenController);
 app.get('/user/:id', tokenValidation, user.userController.getById);
 app.post('/categories', tokenValidation, nameValidation, category.categoryController.create);
+app.get('/categories', tokenValidation, category.categoryController.getAll);
 
 app.listen(port, () => console.log('ouvindo porta', port));
