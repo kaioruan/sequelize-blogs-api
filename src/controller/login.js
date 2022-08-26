@@ -1,20 +1,17 @@
-const jwt = require('jsonwebtoken');
-const { User } = require('../database/models');
+const Login = require('../services/login');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'secret';
 const ERROR_500 = 'Algo de errado não está certo';
 
 const loginController = {
   getAll: async (req, res) => {
     try {
       const { email } = req.body;
-      const user = await User.findOne({ where: { email } });
-      if (!user || user.password !== req.body.password) {
+      const passwordNew = req.body.password;
+      const user = await Login.loginService.getAll(email, passwordNew);
+      if (!user) {
         return res.status(400).json({ message: 'Invalid fields' });
       }
-      const { password, ...dataUser } = user;
-      const token = jwt.sign({ dataUser }, JWT_SECRET);
-      res.status(200).json({ token });
+      res.status(200).json(user);
     } catch (error) {
       console.log(error);
       return res.status(500).json({ message: ERROR_500 });
