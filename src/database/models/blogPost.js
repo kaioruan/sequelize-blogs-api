@@ -21,15 +21,15 @@ module.exports = (sequelize, DataTypes) => {
   });
   BlogPost.associate = (models) => {
     BlogPost.belongsTo(models.User, {
-      foreignKey: "id",
-      as: "user"
+      foreignKey: 'id',
+      as: 'user',
     });
   }
-  BlogPost.associate = (models) => {
-    BlogPost.hasMany(models.PostCategory, {
-      foreignKey: 'id',
-      as: 'PostCategorys',
-    });
-  };
+  // BlogPost.associate = (models) => {
+  //   BlogPost.hasMany(models.PostCategory, {
+  //     foreignKey: 'id',
+  //     as: 'PostCategorys',
+  //   });
+  // };
   return BlogPost;
 };
