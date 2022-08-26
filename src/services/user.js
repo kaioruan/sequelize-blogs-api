@@ -21,10 +21,16 @@ const userService = {
     const allUser = await User.findAll({
       attributes: { exclude: ['password'] },
     });
-    console.log(allUser);
     const result = allUser.map((user) => user.dataValues);
     return result;
 },
+  getById: async (id) => {
+    const allUser = await User.findByPk(id, {
+      attributes: { exclude: ['password'] },
+    });
+    if (!allUser) return null;
+    return allUser.dataValues;
+  },
 };
 
 module.exports = {
