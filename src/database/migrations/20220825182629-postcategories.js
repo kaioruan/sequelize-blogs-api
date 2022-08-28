@@ -9,6 +9,7 @@ module.exports = {
         foreignKey: true,
         allowNull: false,
         onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         references: {
           model: 'BlogPosts',
           key: 'id',
@@ -19,6 +20,7 @@ module.exports = {
         primaryKey: true,
         foreignKey: true,
         allowNull: false,
+        onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
           model: 'Categories',

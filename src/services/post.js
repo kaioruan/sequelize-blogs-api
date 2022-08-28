@@ -11,21 +11,19 @@ const postService = {
         categoryId,
       }));
       await PostCategory.bulkCreate(postCategories, { transaction: transact });
-      console.log(category);
       return category.dataValues;
     });
     return transaction;
   },
   getAll: async () => {
-    const result = await BlogPost.findAll({
-      include: [{ model: User,
-      as: 'user',
-      attributes: { exclude: ['password'] } }, 
-      {
-        model: Category,
-        as: 'categories',
-      }],
-    });
+    console.log('SERVICEEEEEEEEEEEEEEE');
+    const result = await BlogPost.findAll({ 
+      attributes: { exclude: ['UserId'] },
+      include: [
+        { model: User, as: 'user', attributes: { exclude: ['password'] } }, 
+        { model: Category, as: 'categories', through: { attributes: [] } },
+      ] });
+    console.log('AAAAAAAAAAAAAAAAACONSOLE TA AKI', result);
     return result;
   },
 };
