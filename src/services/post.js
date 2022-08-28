@@ -16,15 +16,23 @@ const postService = {
     return transaction;
   },
   getAll: async () => {
-    console.log('SERVICEEEEEEEEEEEEEEE');
     const result = await BlogPost.findAll({ 
       attributes: { exclude: ['UserId'] },
       include: [
         { model: User, as: 'user', attributes: { exclude: ['password'] } }, 
         { model: Category, as: 'categories', through: { attributes: [] } },
       ] });
-    console.log('AAAAAAAAAAAAAAAAACONSOLE TA AKI', result);
     return result;
+  },
+  getById: async (id) => {
+    const postId = await BlogPost.findByPk(id, {
+      include: [
+        { model: User, as: 'user', attributes: { exclude: ['password'] } }, 
+        { model: Category, as: 'categories', through: { attributes: [] } },
+      ],
+    });
+    if (!postId) return null;
+    return postId.dataValues;
   },
 };
 
