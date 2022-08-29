@@ -32,7 +32,12 @@ const postService = {
       ],
     });
     if (!postId) return null;
-    return postId.dataValues;
+    return postId;
+  },
+  updateById: async (id, title, content) => {
+    const postId = await postService.getById(id);
+    const result = await postId.update({ title, content });
+    return result;
   },
 };
 
