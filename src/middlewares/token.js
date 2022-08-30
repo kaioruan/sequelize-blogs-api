@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { postService } = require('../services/post');
+const { userService } = require('../services/user');
 require('dotenv').config();
 
 const tokenValidation = (req, res, next) => {
@@ -32,5 +33,23 @@ const tokenUserValidation = async (req, res, next) => {
 
   next();
 };
+const tokenUserMeValidation = async (req, res, next) => {
+  try {
+    const { authorization } = req.headers;
+    if (!authorization) return res.status(401).json({ message: 'Token not found' });
+    const user = jwt.verify(authorization, process.env.JWT_SECRET);
+    const userId = await userService.getById(user.dataUser.dataValues.id);
+    if (!userId) return res.status(404).json({ message: 'Post does not exist' });
+    if (userId.id !== user.dataUser.dataValues.id) {
+    return res.status(401).json(
+      { message: 'Unauthorized user' },
+      ); 
+}
+  } catch (error) {
+    return res.status(401).json({ message: 'Expired or invalid token' });
+  }
 
-module.exports = { tokenValidation, tokenUserValidation };
+  next();
+};
+
+module.exports = { tokenValidation, tokenUserValidation, tokenUserMeValidation };

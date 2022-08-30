@@ -1,4 +1,6 @@
+const jwt = require('jsonwebtoken');
 const User = require('../services/user');
+require('dotenv').config();
 
 const ERROR_500 = 'Algo de errado não está certo';
 
@@ -38,8 +40,19 @@ const userController = {
       return res.status(500).json({ message: ERROR_500 });
     }
   },
+  deleteById: async (req, res) => {
+    try {
+      const { authorization } = req.headers;
+      const user = jwt.verify(authorization, process.env.JWT_SECRET);
+      const { id } = user.dataUser.dataValues;
+      await User.userService.deleteById(id);
+      return res.status(204).end();
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: ERROR_500 });
+    }
+  },
 };
-
 module.exports = {
   userController,
 };

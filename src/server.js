@@ -9,6 +9,7 @@ const { userValidation, displayNameValidation, nameValidation } = require('./mid
 const { 
   tokenValidation, 
   tokenUserValidation,
+  tokenUserMeValidation,
 } = require('./middlewares/token');
 const { postValidation } = require('./middlewares/post');
 
@@ -32,5 +33,8 @@ app.put('/post/:id', postValidation, tokenUserValidation, post.postController.up
 app.delete(
   '/post/:id', tokenUserValidation, post.postController.deleteById,
   );
+  app.delete(
+    '/user/me', tokenUserMeValidation, user.userController.deleteById,
+    );
 
 app.listen(port, () => console.log('ouvindo porta', port));

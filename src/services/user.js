@@ -31,6 +31,11 @@ const userService = {
     if (!allUser) return null;
     return allUser.dataValues;
   },
+  deleteById: async (id) => {
+    await User.destroy({
+      where: { id },
+    });
+  },
 };
 
 module.exports = {
