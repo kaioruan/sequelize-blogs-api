@@ -45,9 +45,18 @@ const postController = {
     try {
       const { id } = req.params;
       const { title, content } = req.body;
-      console.log(id, title, content);
       const postId = await postService.updateById(id, title, content);
       return res.status(200).json(postId);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: ERROR_500 });
+    }
+  },
+  deleteById: async (req, res) => {
+    try {
+      const { id } = req.params;
+      await postService.deleteById(id);
+      return res.status(204).end();
     } catch (error) {
       console.log(error);
       return res.status(500).json({ message: ERROR_500 });

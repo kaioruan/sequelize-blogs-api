@@ -39,6 +39,10 @@ const postService = {
     const result = await postId.update({ title, content });
     return result;
   },
+  deleteById: async (id) => {
+    const postId = await postService.getById(id);
+    await postId.destroy();
+  },
 };
 
 module.exports = {
