@@ -1,4 +1,6 @@
-const { BlogPost, User, Category, PostCategory, sequelize } = require('../database/models');
+const { 
+  BlogPost, User, Category, PostCategory, sequelize, Sequelize, 
+} = require('../database/models');
 
 const postService = {
   create: async (title, content, categoryIds, userId) => {
@@ -43,8 +45,20 @@ const postService = {
     const postId = await postService.getById(id);
     await postId.destroy();
   },
+  getBySearch: async (q) => {
+    const { Op } = Sequelize;
+    const posts = await BlogPost.findAll({
+      where: {
+        [Op.or]: [{ title: { [Op.like]: `%${q}%` } }, { content: { [Op.like]: `%${q}%` } }],
+      }, 
+      include: [
+        { model: User, as: 'user', attributes: { exclude: ['password'] } }, 
+        { model: Category, as: 'categories', through: { attributes: [] } },
+      ] });
+    const result = await posts.map((user) => user.dataValues);
+    return result || [];
+},
 };
-
 module.exports = {
   postService,
 };

@@ -26,6 +26,7 @@ app.get('/user', tokenValidation, user.userController.tokenController);
 app.get('/user/:id', tokenValidation, user.userController.getById);
 app.post('/categories', tokenValidation, nameValidation, category.categoryController.create);
 app.get('/categories', tokenValidation, category.categoryController.getAll);
+app.get('/post/search', tokenValidation, post.postController.getBySearch);
 app.post('/post', tokenValidation, postValidation, post.postController.create);
 app.get('/post', tokenValidation, post.postController.getAll);
 app.get('/post/:id', tokenValidation, post.postController.getById);

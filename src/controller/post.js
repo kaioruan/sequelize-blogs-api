@@ -62,6 +62,16 @@ const postController = {
       return res.status(500).json({ message: ERROR_500 });
     }
   },
+  getBySearch: async (req, res) => {
+    try {
+      const { q } = req.query;
+      const postSearch = await postService.getBySearch(q);
+      return res.status(200).json(postSearch);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: ERROR_500 });
+    }
+  },
 };
 
 module.exports = {
