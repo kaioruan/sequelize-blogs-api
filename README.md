@@ -56,8 +56,6 @@ Todos os dados de conexão com o banco de dados `MYSQL` devem ser feitos em um a
 - ✅ 8. Crie um endpoint GET `/post`: O endpoint deve ser capaz de listar todos os `BLOGPOSTS` cadastrados.
 - ✅ 9. Crie um endpoint GET `/post/:id`: O endpoint deve ser capaz de listar um `BLOGPOST` específico com sucesso.
 - ✅ 10. Crie um endoint PUT `/post/:id`: O endpoint deve ser capaz de editar e atualizar `BLOGPOST` específico com sucesso.
-### Requisitos Opcionais:
-
 - ✅ 11. Crie um endpoint DELETE `/post/:id`: O endpoint deve ser capaz de deletar um `BLOGPOST` específico com sucesso.
 - ✅ 12. Crie um endpoint DELETE `/user/me`: O endpoint deve ser capaz de deletar o usuário atual com sucesso.
 - ✅ 13. Crie um endpoint GET `/post/search?q=:searchTerm`: O endpoint deve ser capaz de listar um `BLOGPOST` que contenham em seu título ou conteúdo, o termo pesquisado no `queryParam` da URL.
