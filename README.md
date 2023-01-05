@@ -6,6 +6,9 @@ Esse projeto foi desenvolvido durante o módulo de _BackEnd_ na Trybe! #vqv 🚀
 Aqui você vai encontrar os detalhes de como foi o desenvolvimento do projeto e quais foram os requisitos obrigatórios e opcionais para o desenvolvimento.
 
 ---
+# Descrição:
+ Construção de uma API e um banco de dados para a produção de conteúdo de um blog.
+ 
 # Habilidades desenvolvidas
  - Criação de API.
  - Criar e associar tabelas usando`NodeJS` através do pacote do `sequelize`.
